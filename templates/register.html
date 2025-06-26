@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Registro{% endblock %}
+{% block content %}
+<h2>Registro de usuario</h2>
+<form method="post" class="row g-3">
+  <div class="col-md-6">
+    <label for="username" class="form-label">Usuario *</label>
+    <input type="text" class="form-control" id="username" name="username" required>
+  </div>
+  <div class="col-md-6">
+    <label for="password" class="form-label">Contraseña *</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <div class="col-md-6">
+    <label for="first_name" class="form-label">Nombre *</label>
+    <input type="text" class="form-control" id="first_name" name="first_name" required>
+  </div>
+  <div class="col-md-6">
+    <label for="last_name" class="form-label">Apellido *</label>
+    <input type="text" class="form-control" id="last_name" name="last_name" required>
+  </div>
+  <div class="col-md-6">
+    <label for="phone" class="form-label">Celular *</label>
+    <input type="text" class="form-control" id="phone" name="phone" required>
+  </div>
+  <div class="col-md-6">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email">
+  </div>
+  <div class="col-md-6">
+    <label for="category" class="form-label">Categoría *</label>
+    <select class="form-select" id="category" name="category" required>
+      <option value="" selected>Seleccione...</option>
+      <option value="socio">Socio</option>
+      <option value="funcionario">Funcionario</option>
+      <option value="formativas">Formativas</option>
+      <option value="primera">Primera</option>
+      <option value="externo">Externo</option>
+    </select>
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Registrar</button>
+  </div>
+</form>
+{% endblock %}

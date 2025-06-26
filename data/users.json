@@ -1,0 +1,26 @@
+{
+  "pepe": {
+    "first_name": "Pepe",
+    "last_name": "Álvarez",
+    "phone": "092081330",
+    "email": "gsignorele@gmail.com",
+    "password": "scrypt:32768:8:1$lEDatgi2ZM0ppl6L$4208d2d060557c96f26d0a1942c290e9fb712f714a6a58963e70fff2e52cb5f9f2dc71c0c96d218edc602754ce1f018ea4209f8e3fa8a1bdc719a8ef67d8c55d",
+    "is_admin": false,
+    "direccion": "",
+    "categoria": "formativas"
+  },
+  "gsignorele": {
+    "password": "scrypt:32768:8:1$JUOURGM2Te5Eb4gW$97552ba8b68543c08d6f58f3bd2ad891e6f580f61845d8566edea53892ed706fa560ce78dbc2ab3c6337d5d6a82a6ff035136d5b3746e83e12038c655fc0483a",
+    "is_admin": true
+  },
+  "pacifico": {
+    "first_name": "pato",
+    "last_name": "pacifico",
+    "phone": "092081330",
+    "email": "gsignorele@antel.com.uy",
+    "categoria": "primera",
+    "password": "scrypt:32768:8:1$cdzZC7tDxS0gvFMk$568b4a88bc28a47886a522b0868aaa870ea6f2696e21280208537bc0b491e6e00db99e973749ccb2a8f796f2016e527195b6fe4c0938658a98f74774e5d45514",
+    "is_admin": false,
+    "confirmado": true
+  }
+}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Mis reservas{% endblock %}
+
+{% block content %}
+<h2>Mis reservas</h2>
+
+{% if bookings %}
+  <ul class="list-group">
+    {% for date, hour, pagado in bookings %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{ date }}</strong> a las <strong>{{ hour }}</strong><br>
+          Estado de pago: <strong>{% if pagado %}Pagado{% else %}Pendiente{% endif %}</strong>
+        </div>
+        <form action="{{ url_for('cancel', date_str=date, hour=hour) }}" method="post" onsubmit="return confirm('¿Seguro que querés cancelar esta reserva?')">
+          <button type="submit" class="btn btn-danger btn-sm">Cancelar</button>
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No tenés reservas registradas.</p>
+{% endif %}
+
+<p><a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Volver</a></p>
+{% endblock %}

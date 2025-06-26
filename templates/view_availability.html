@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Reservar Turno{% endblock %}
+{% block content %}
+<h2>Reservar Turno</h2>
+<form method="post" class="row g-3 mb-4">
+  <div class="col-md-4">
+    <label>Fecha</label>
+    <select class="form-select" name="date" required>
+      <option value="">--Seleccione--</option>
+      {% for date in dates %}
+        <option value="{{ date }}">{{ date }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-4">
+    <label>Hora</label>
+    <select class="form-select" name="hour" required>
+      <option value="">Primero seleccione fecha</option>
+    </select>
+  </div>
+  <div class="col-md-2 align-self-end">
+    <button class="btn btn-primary" type="submit">Reservar</button>
+  </div>
+</form>
+
+<script>
+// JavaScript mínimo para poblar horas según fecha seleccionada
+const availability = {{ availability | tojson }};
+const dateSelect = document.querySelector('select[name="date"]');
+const hourSelect = document.querySelector('select[name="hour"]');
+
+dateSelect.addEventListener('change', () => {
+  const date = dateSelect.value;
+  hourSelect.innerHTML = '<option value="">--Seleccione hora--</option>';
+  if (availability[date]) {
+    availability[date].forEach(h => {
+      const opt = document.createElement('option');
+      opt.value = h; opt.textContent = h;
+      hourSelect.appendChild(opt);
+    });
+  }
+});
+</script>
+{% endblock %}

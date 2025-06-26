@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Admin - Disponibilidad{% endblock %}
+{% block content %}
+<h2>Definir disponibilidad</h2>
+<form method="post" class="row g-3 mb-4">
+  <div class="col-md-4">
+    <label for="date" class="form-label">Fecha</label>
+    <input type="date" class="form-control" name="date" required>
+  </div>
+  <div class="col-md-4">
+    <label for="start" class="form-label">Hora inicio</label>
+    <input type="time" class="form-control" name="start" required>
+  </div>
+  <div class="col-md-4">
+    <label for="end" class="form-label">Hora fin</label>
+    <input type="time" class="form-control" name="end" required>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Agregar disponibilidad</button>
+  </div>
+</form>
+
+<h3>Disponibilidad actual</h3>
+<ul>
+  {% for date in dates %}
+    <li><strong>{{ date }}</strong>: {{ availability[date] | join(', ') }}</li>
+  {% endfor %}
+</ul>
+
+<hr>
+<p><a href="{{ url_for('admin_agenda') }}" class="btn btn-secondary">Ver agenda de reservas</a></p>
+{% endblock %}

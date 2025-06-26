@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Mi perfil{% endblock %}
+{% block content %}
+<h2>Mi perfil</h2>
+<form method="post" class="row g-3">
+  <div class="col-md-6">
+    <label for="first_name" class="form-label">Nombre *</label>
+    <input type="text" class="form-control" id="first_name" name="first_name" value="{{ user.first_name or '' }}" required>
+  </div>
+  <div class="col-md-6">
+    <label for="last_name" class="form-label">Apellido *</label>
+    <input type="text" class="form-control" id="last_name" name="last_name" value="{{ user.last_name or '' }}" required>
+  </div>
+  <div class="col-md-6">
+    <label for="phone" class="form-label">Celular *</label>
+    <input type="text" class="form-control" id="phone" name="phone" value="{{ user.phone or '' }}" required>
+  </div>
+  <div class="col-md-6">
+    <label for="email" class="form-label">Email</label>
+    <input type="email" class="form-control" id="email" name="email" value="{{ user.email or '' }}">
+  </div>
+  <div class="col-12">
+    <label for="direccion" class="form-label">Dirección</label>
+    <input type="text" class="form-control" id="direccion" name="direccion" value="{{ user.direccion or '' }}">
+  </div>
+  <div class="col-md-6">
+    <label for="categoria" class="form-label">Categoría *</label>
+    <select name="categoria" id="categoria" class="form-select" required>
+      <option value="">Seleccione...</option>
+      <option value="socio" {% if user.categoria == 'socio' %}selected{% endif %}>Socio</option>
+      <option value="funcionario" {% if user.categoria == 'funcionario' %}selected{% endif %}>Funcionario</option>
+      <option value="formativas" {% if user.categoria == 'formativas' %}selected{% endif %}>Formativas</option>
+      <option value="primera" {% if user.categoria == 'primera' %}selected{% endif %}>Primera</option>
+      <option value="externo" {% if user.categoria == 'externo' %}selected{% endif %}>Externo</option>
+    </select>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Guardar</button>
+  </div>
+</form>
+{% endblock %}

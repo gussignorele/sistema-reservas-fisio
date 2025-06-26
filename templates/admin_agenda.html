@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Agenda de Reservas{% endblock %}
+
+{% block content %}
+<h2>Agenda completa</h2>
+
+{% if bookings %}
+  {% for date, hours in bookings.items() %}
+    <h4>{{ date }}</h4>
+    <ul>
+      {% for hour, users in hours.items() %}
+        <li><strong>{{ hour }}</strong>:
+          <ul>
+            {% for user_info in users %}
+              <li>{{ user_info | safe }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+{% else %}
+  <p>No hay reservas registradas.</p>
+{% endif %}
+
+<p><a href="{{ url_for('admin') }}" class="btn btn-secondary">Volver</a></p>
+{% endblock %}

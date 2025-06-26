@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Historial de reservas</h2>
+
+  <form method="POST" class="form-inline mb-3">
+    <label for="filtro">Filtrar por:</label>
+    <select name="filtro" id="filtro" class="form-control mx-2">
+      <option value="">-- Todos --</option>
+      <option value="dia" {% if filtro == 'dia' %}selected{% endif %}>Día</option>
+      <option value="semana" {% if filtro == 'semana' %}selected{% endif %}>Semana</option>
+      <option value="mes" {% if filtro == 'mes' %}selected{% endif %}>Mes</option>
+    </select>
+
+    <input type="text" name="fecha" value="{{ fecha or '' }}" class="form-control mx-2" placeholder="YYYY-MM-DD o YYYY-MM">
+
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+  </form>
+
+    <form method="POST" action="{{ url_for('export_historial_csv') }}" class="mb-3">
+      <input type="hidden" name="filtro" value="{{ filtro or '' }}">
+      <input type="hidden" name="fecha" value="{{ fecha or '' }}">
+      <button type="submit" class="btn btn-outline-secondary">Exportar a CSV</button>
+    </form>
+
+    <form method="POST" action="{{ url_for('export_historial_csv') }}" class="mb-3">
+      <input type="hidden" name="filtro" value="">
+      <input type="hidden" name="fecha" value="">
+      <button type="submit" class="btn btn-outline-secondary">Exportar TODO el historial</button>
+    </form>
+  {% if resultados %}
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Usuario</th>
+          <th>Teléfono</th>
+          <th>Categoría</th>
+          <th>Pagado</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in resultados %}
+          <tr>
+            <td>{{ r[0] }}</td>
+            <td>{{ r[1] }}</td>
+            <td>{{ r[2] }}</td>
+            <td>{{ r[3] }}</td>
+            <td>{{ r[4] }}</td>
+            <td>{{ r[5] }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No hay reservas para mostrar.</p>
+  {% endif %}
+{% endblock %}
