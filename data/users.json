@@ -20,7 +20,7 @@
     "email": "gsignorele@antel.com.uy",
     "categoria": "primera",
     "password": "scrypt:32768:8:1$cdzZC7tDxS0gvFMk$568b4a88bc28a47886a522b0868aaa870ea6f2696e21280208537bc0b491e6e00db99e973749ccb2a8f796f2016e527195b6fe4c0938658a98f74774e5d45514",
-    "is_admin": false,
+    "is_admin": true,
     "confirmado": true
   }
 }
