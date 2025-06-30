@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, abort
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime, timedelta
@@ -603,5 +603,28 @@ def nuevo_password(token):
 if __name__ == "__main__":
     app.run(debug=True)
 """
+
+
+# /admin/ver_json/users
+#
+# /admin/ver_json/bookings
+@app.route("/admin/ver_json/<archivo>")
+@login_required
+def ver_json(archivo):
+    if not current_user.is_admin:
+        abort(403)
+
+    nombre_archivo = f"{archivo}.json"
+
+    try:
+        datos = load_json(nombre_archivo)
+        return render_template("ver_json.html", archivo=archivo, datos=datos)
+    except FileNotFoundError:
+        flash(f"Archivo {nombre_archivo} no encontrado", "error")
+        return redirect(url_for("admin"))
+    except Exception as e:
+        return f"Error al leer {nombre_archivo}: {e}", 500
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
